@@ -72,10 +72,13 @@ plt.hist(sim_results, bins=50, color='skyblue', edgecolor='black')
 plt.xlabel("Portfolio Value")
 plt.ylabel("Frequency")
 plt.title("Monte Carlo Simulation of Portfolio Returns")
-plt.show()
-# Average/Probability of Loss
+
+# Add average line
 plt.axvline(average_value, color='red', linestyle='dashed', linewidth=2, label="Average Value")
 plt.legend()
+
+# Display graph
+plt.show()
 
 
 print("\nMonte Carlo Simulation Results:")
