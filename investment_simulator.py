@@ -1,6 +1,7 @@
 # investment_simulator.py
 
 import random
+import matplotlib.pyplot as plt
 
 # ---------------------------
 # Investment Simulator - Portfolio Diversification + Monte Carlo
@@ -65,6 +66,17 @@ average_value = sum(sim_results) / num_simulations
 max_value = max(sim_results)
 min_value = min(sim_results)
 prob_loss = sum(1 for x in sim_results if x < sum(portfolio.values())) / num_simulations
+
+# Graph
+plt.hist(sim_results, bins=50, color='skyblue', edgecolor='black')
+plt.xlabel("Portfolio Value")
+plt.ylabel("Frequency")
+plt.title("Monte Carlo Simulation of Portfolio Returns")
+plt.show()
+# Average/Probability of Loss
+plt.axvline(average_value, color='red', linestyle='dashed', linewidth=2, label="Average Value")
+plt.legend()
+
 
 print("\nMonte Carlo Simulation Results:")
 print(f"Average Portfolio Value: ${average_value:.2f}")
