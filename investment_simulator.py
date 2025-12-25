@@ -1,69 +1,79 @@
 # investment_simulator.py
 
-# Purpose:
-# Simple simulator showing how different risk levels affect investment outcomes.
-
-# Step 1: Ask user for starting money
-# Step 2: Ask user for risk level (Low, Medium, High)
-# Step 3: Assign expected return and variation based on risk level
-#   Low: +2% return, low variation
-#   Medium: +5% return, medium variation
-#   High: +10% return, high variation
-# Step 4: Calculate final portfolio value using random variation
-# Step 5: Print final portfolio value
-# Step 6: Print explanation 
-#   Example: "High risk can give bigger gains but also bigger losses."
-
 import random
 
-def investment_simulator():
-    print("Simple Investment Simulator")
-    print("---------------------------")
+# ---------------------------
+# Investment Simulator - Portfolio Diversification + Monte Carlo
+# ---------------------------
 
-    # Step 1: Get starting money
-    starting_money = float(input("Enter starting amount of money: $"))
+print("Investment Simulator - Portfolio Diversification + Monte Carlo\n")
 
-    # Step 2: Get risk level
-    print("\nChoose a risk level:")
-    print("1 - Low Risk")
-    print("2 - Medium Risk")
-    print("3 - High Risk")
+# Step 1: Get user input
+starting_money = float(input("Enter your total investment amount: $"))
 
-    choice = input("Enter 1, 2, or 3: ")
+bond_amount = float(input("Enter amount to invest in Bond: $"))
+stock_amount = float(input("Enter amount to invest in Stock: $"))
+startup_amount = float(input("Enter amount to invest in Startup: $"))
 
-    # Step 3: Assign return ranges based on risk level
-    if choice == "1":
-        risk_level = "Low"
-        min_return = 0.01   # +1%
-        max_return = 0.03   # +3%
-        explanation = "Low risk investments usually grow slowly but are safer."
-    elif choice == "2":
-        risk_level = "Medium"
-        min_return = 0.02   # +2%
-        max_return = 0.08   # +8%
-        explanation = "Medium risk investments balance growth and risk."
-    elif choice == "3":
-        risk_level = "High"
-        min_return = -0.05  # -5%
-        max_return = 0.15   # +15%
-        explanation = "High risk investments can lead to big gains or big losses."
-    else:
-        print("Invalid choice.")
-        return
+if bond_amount + stock_amount + startup_amount > starting_money:
+    print("Allocation exceeds total investment. Please restart and enter valid amounts.")
+    exit()
 
-    # Step 4: Simulate return
-    rate_of_return = random.uniform(min_return, max_return)
-    final_money = starting_money * (1 + rate_of_return)
+# Step 2: Define risk ranges
+risk_ranges = {
+    "Bond": (0.01, 0.03),     # Low risk
+    "Stock": (0.02, 0.08),    # Medium risk
+    "Startup": (-0.05, 0.15)  # High risk
+}
 
-    # Step 5: Output results
-    print("\nResults")
-    print("-------")
-    print(f"Risk Level Chosen: {risk_level}")
-    print(f"Rate of Return: {rate_of_return * 100:.2f}%")
-    print(f"Final Amount: ${final_money:.2f}")
-    print("\nExplanation:")
-    print(explanation)
+portfolio = {
+    "Bond": bond_amount,
+    "Stock": stock_amount,
+    "Startup": startup_amount
+}
 
-# Run the simulator
-investment_simulator()
+# Step 3: Single simulation run
+results = {}
+for asset, amount in portfolio.items():
+    min_r, max_r = risk_ranges[asset]
+    results[asset] = amount * (1 + random.uniform(min_r, max_r))
+
+total_value = sum(results.values())
+
+print("\nSingle Simulation Portfolio Results:")
+for asset, value in results.items():
+    print(f"{asset}: ${value:.2f}")
+print(f"Total Portfolio Value: ${total_value:.2f}")
+
+print("\nExplanation:")
+print("Diversifying across multiple assets reduces overall risk.")
+print("Bonds are low risk, Stocks are medium risk, and Startups are high risk.")
+print("This simulation shows how different allocations can affect your portfolio outcome.")
+
+# Step 4: Monte Carlo Simulation
+num_simulations = int(input("\nEnter number of simulations to run (e.g., 1000): "))
+sim_results = []
+
+for _ in range(num_simulations):
+    sim_total = 0
+    for asset, amount in portfolio.items():
+        min_r, max_r = risk_ranges[asset]
+        sim_total += amount * (1 + random.uniform(min_r, max_r))
+    sim_results.append(sim_total)
+
+average_value = sum(sim_results) / num_simulations
+max_value = max(sim_results)
+min_value = min(sim_results)
+prob_loss = sum(1 for x in sim_results if x < sum(portfolio.values())) / num_simulations
+
+print("\nMonte Carlo Simulation Results:")
+print(f"Average Portfolio Value: ${average_value:.2f}")
+print(f"Maximum Portfolio Value: ${max_value:.2f}")
+print(f"Minimum Portfolio Value: ${min_value:.2f}")
+print(f"Probability of Losing Money: {prob_loss*100:.2f}%")
+
+print("\nExplanation:")
+print("Monte Carlo simulation runs the portfolio multiple times to show variability.")
+print("It demonstrates expected value, range of possible outcomes, and risk of loss.")
+
 
