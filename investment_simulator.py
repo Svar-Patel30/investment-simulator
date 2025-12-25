@@ -23,7 +23,7 @@ if bond_amount + stock_amount + startup_amount > starting_money:
 # Step 2: Define risk ranges
 risk_ranges = {
     "Bond": (0.01, 0.03),     # Low risk
-    "Stock": (0.02, 0.08),    # Medium risk
+    "Stock": (-0.05, 0.08),    # Medium risk
     "Startup": (-0.05, 0.15)  # High risk
 }
 
