@@ -22,14 +22,14 @@ A **Teaching Mode** is included to provide step-by-step explanations of how port
 - `matplotlib` for data visualization  
 
 **How to Use:**  
+
 1. Clone the repository:  
-git clone <your-repo-url>
 
-Install dependencies:
-pip install matplotlib
+2. Install dependencies:
+**pip install matplotlib**
 
-Run the simulator:
-python investment_simulator.py
+3. Run the simulator:
+**python investment_simulator.py**
 
 Follow on-screen prompts:
 Enter total investment amount
