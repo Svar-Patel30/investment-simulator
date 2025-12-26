@@ -23,27 +23,32 @@ A **Teaching Mode** is included to provide step-by-step explanations of how port
 
 **How to Use:**  
 1. Clone the repository:  
-```bash
 git clone <your-repo-url>
+
 Install dependencies:
 pip install matplotlib
+
 Run the simulator:
 python investment_simulator.py
+
 Follow on-screen prompts:
 Enter total investment amount
 Allocate funds across Bonds, Stocks, and Startups
 Enter number of simulations and years
 Optionally enable Teaching Mode
-Educational Value:
-This project is designed as both a portfolio tool and a learning aid, demonstrating key financial concepts:
+
+**Educational Value:**
+- This project is designed as both a portfolio tool and a learning aid, demonstrating key financial concepts:
 Risk and return trade-offs
-Portfolio diversification benefits
-Effects of rare market events
-Randomness and variability in investment outcomes
-Next Steps / Expansion Ideas:
-Convert into a web-based interactive app using Streamlit
-Add additional assets (Mutual Funds, ETFs, etc.)
-Include recurring investments and compound contributions
-Compare different investment strategies (Conservative, Moderate, Aggressive)
+- Portfolio diversification benefits
+- Effects of rare market events
+- Randomness and variability in investment outcomes
+  
+**Next Steps / Expansion Ideas:**
+- Convert into a web-based interactive app using Streamlit
+- Add additional assets (Mutual Funds, ETFs, etc.)
+- Include recurring investments and compound contributions
+- Compare different investment strategies (Conservative, Moderate, Aggressive)
+  
 Author:
-[Your Name] – High school student building financial literacy and Python skills through hands-on projects.
+Svar Patel – High school student building financial literacy and Python skills through hands-on projects.
