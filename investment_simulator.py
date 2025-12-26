@@ -15,6 +15,7 @@ starting_money = float(input("Enter your total investment amount: $"))
 bond_amount = float(input("Enter amount to invest in Bond: $"))
 stock_amount = float(input("Enter amount to invest in Stock: $"))
 startup_amount = float(input("Enter amount to invest in Startup: $"))
+shock_probability = 0.05  # 5% chance of extreme event
 
 if bond_amount + stock_amount + startup_amount > starting_money:
     print("Allocation exceeds total investment. Please restart and enter valid amounts.")
@@ -59,7 +60,13 @@ for _ in range(num_simulations):
     sim_total = 0
     for asset, amount in portfolio.items():
         min_r, max_r = risk_ranges[asset]
-        sim_total += amount * (1 + random.uniform(min_r, max_r))
+if random.random() < shock_probability:
+    # Extreme event
+    extreme_return = random.uniform(-0.30, 0.40)  # -30% crash or +40% boom
+    sim_total += amount * (1 + extreme_return)
+else:
+    # Normal market behavior
+    sim_total += amount * (1 + random.uniform(min_r, max_r))
     sim_results.append(sim_total)
 
 average_value = sum(sim_results) / num_simulations
