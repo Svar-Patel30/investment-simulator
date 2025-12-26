@@ -22,14 +22,18 @@ A **Teaching Mode** is included to provide step-by-step explanations of how port
 - `matplotlib` for data visualization  
 
 **How to Use:**  
-
 1. Clone the repository:  
-
-2. Install dependencies:
-**pip install matplotlib**
-
-3. Run the simulator:
-**python investment_simulator.py**
+```bash
+git clone <your-repo-url>
+```  
+2. Install dependencies:  
+```bash
+pip install matplotlib
+```  
+3. Run the simulator:  
+```bash
+python investment_simulator.py
+```  
 
 Follow on-screen prompts:
 Enter total investment amount
@@ -51,4 +55,4 @@ Risk and return trade-offs
 - Compare different investment strategies (Conservative, Moderate, Aggressive)
   
 Author:
-Svar Patel – High school student building financial literacy and Python skills through hands-on projects.
+Svar Patel - High school student building financial literacy and Python skills through hands-on projects.
