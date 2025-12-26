@@ -58,16 +58,20 @@ sim_results = []
 
 for _ in range(num_simulations):
     sim_total = 0
+
     for asset, amount in portfolio.items():
         min_r, max_r = risk_ranges[asset]
-if random.random() < shock_probability:
-    # Extreme event
-    extreme_return = random.uniform(-0.30, 0.40)  # -30% crash or +40% boom
-    sim_total += amount * (1 + extreme_return)
-else:
-    # Normal market behavior
-    sim_total += amount * (1 + random.uniform(min_r, max_r))
+
+        if random.random() < shock_probability:
+            # Extreme event
+            extreme_return = random.uniform(-0.30, 0.40)  # -30% crash or +40% boom
+            sim_total += amount * (1 + extreme_return)
+        else:
+            # Normal market behavior
+            sim_total += amount * (1 + random.uniform(min_r, max_r))
+
     sim_results.append(sim_total)
+
 
 average_value = sum(sim_results) / num_simulations
 max_value = max(sim_results)
@@ -97,5 +101,3 @@ print(f"Probability of Losing Money: {prob_loss*100:.2f}%")
 print("\nExplanation:")
 print("Monte Carlo simulation runs the portfolio multiple times to show variability.")
 print("It demonstrates expected value, range of possible outcomes, and risk of loss.")
-
-
